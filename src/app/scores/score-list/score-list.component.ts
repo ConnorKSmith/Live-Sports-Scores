@@ -45,12 +45,12 @@ export class ScoreListComponent implements OnInit {
 
   createNewScore() {
     var score: Score = {
-		home_team: "";
-		home_score:	0;
-		away_team: "";
-		away_score: 0;
-		time_remaining: "";
-		date: "";
+		home_team: "",
+		home_score:	0,
+		away_team: "",
+		away_score: 0,
+		time_remaining: "",
+		date: ""
     };
 
     // By default, a newly-created score will have the selected state.
