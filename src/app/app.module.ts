@@ -6,12 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ContactDetailsComponent } from './contacts/contact-details/contact-details.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
+import { ScoreDetailsComponent } from './scores/score-details/score-details.component';
+import { ScoreListComponent } from './scores/score-list/score-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactDetailsComponent,
-    ContactListComponent
+    ContactListComponent,
+    ScoreDetailsComponent,
+    ScoreListComponent
   ],
   imports: [
     BrowserModule,

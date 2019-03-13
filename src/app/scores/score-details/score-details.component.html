@@ -1,0 +1,29 @@
+<div *ngIf="score" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="score._id">Score Details</h2>
+    <h2 *ngIf="!score._id">New Score</h2>
+  </div>
+</div>
+<div *ngIf="score" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="score-time-remaining">Time Remaining</label>
+      <input class="form-control" name="score-time-remaining" [(ngModel)]="score-time-remaining" placeholder="Time Remaining"/>
+    </div>
+    <div class="form-group">
+      <label for="score-home-team">Home Team Name</label>
+      <input class="form-control" name="score-home-team" [(ngModel)]="score-home-team" placeholder="Home Team Name"/>
+    </div>
+    <div class="form-group">
+      <label for="score-home-score">Home Score</label>
+      <input class="form-control" name="score-home-score" [(ngModel)]="score-home-score" placeholder="Home Score"/>
+    </div>
+    <div class="form-group">
+      <label for="score-away-team">Away Team Name</label>
+      <input class="form-control" name="score-away-team" [(ngModel)]="score-away-team" placeholder="Away Score"/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!score._id" (click)="createScore(score)">Create</button>
+    <button class="btn btn-info" *ngIf="score._id" (click)="updateScore(score)">Update</button>
+    <button class="btn btn-danger" *ngIf="score._id" (click)="deleteScore(score._id)">Delete</button>
+  </form>
+</div>

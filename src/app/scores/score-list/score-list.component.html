@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-5">
+    <h2>Scores</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+        *ngFor="let score of scores"
+        (click)="selectScore(score)"
+        [class.active]="score === selectedScore">
+        {{score.name}}
+      </li>
+    </ul>
+    <button class="btn btn-warning" (click)="createNewScore()">New</button>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <score-details
+      [score]="selectedScore"
+      [createHandler]="addScore"
+      [updateHandler]="updateScore"
+      [deleteHandler]="deleteScore">
+    </score-details>
+  </div>
+</div>
