@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { score } from './score';
+import { Score } from './score';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
@@ -9,37 +9,37 @@ export class ScoreService {
     constructor (private http: Http) {}
 
     // get("/api/scores")
-    getscores(): Promise<void | score[]> {
+    getScores(): Promise<void | Score[]> {
       return this.http.get(this.scoresUrl)
                  .toPromise()
-                 .then(response => response.json() as score[])
+                 .then(response => response.json() as Score[])
                  .catch(this.handleError);
     }
 
     // post("/api/scores")
-    createscore(newscore: score): Promise<void | score> {
-      return this.http.post(this.scoresUrl, newscore)
+    createScore(newScore: Score): Promise<void | Score> {
+      return this.http.post(this.scoresUrl, newScore)
                  .toPromise()
-                 .then(response => response.json() as score)
+                 .then(response => response.json() as Score)
                  .catch(this.handleError);
     }
 
     // get("/api/scores/:id") endpoint not used by Angular app
 
     // delete("/api/scores/:id")
-    deletescore(delscoreId: String): Promise<void | String> {
-      return this.http.delete(this.scoresUrl + '/' + delscoreId)
+    deleteScore(delScoreId: String): Promise<void | String> {
+      return this.http.delete(this.scoresUrl + '/' + delScoreId)
                  .toPromise()
                  .then(response => response.json() as String)
                  .catch(this.handleError);
     }
 
     // put("/api/scores/:id")
-    updatescore(putscore: score): Promise<void | score> {
-      var putUrl = this.scoresUrl + '/' + putscore._id;
-      return this.http.put(putUrl, putscore)
+    updateScore(putScore: Score): Promise<void | Score> {
+      var putUrl = this.scoresUrl + '/' + putScore._id;
+      return this.http.put(putUrl, putScore)
                  .toPromise()
-                 .then(response => response.json() as score)
+                 .then(response => response.json() as Score)
                  .catch(this.handleError);
     }
 
