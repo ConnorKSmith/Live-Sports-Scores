@@ -131,7 +131,7 @@ app.get("/api/scores", function(req, res) {
   });
 });
 
-app.post("/api/contacts", function(req, res) {
+app.post("/api/scores", function(req, res) {
   var newScore = req.body;
   newScore.createDate = new Date();
 
