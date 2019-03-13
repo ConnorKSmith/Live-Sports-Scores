@@ -22,12 +22,6 @@ export class ScoreListComponent implements OnInit {
       .getScores()
       .then((scores: Score[]) => {
         this.scores = scores.map((score) => {
-          if (!score.phone) {
-            score.phone = {
-              mobile: '',
-              work: ''
-            }
-          }
           return score;
         });
       });
