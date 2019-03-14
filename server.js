@@ -116,9 +116,9 @@ app.delete("/api/contacts/:id", function(req, res) {
 
 // SCORES -----
 
-/*  "/api/contacts"
- *    GET: finds all contacts
- *    POST: creates a new contact
+/*  "/api/scores"
+ *    GET: finds all scores
+ *    POST: creates a new score
  */
 
 app.get("/api/scores", function(req, res) {
@@ -148,8 +148,42 @@ app.post("/api/scores", function(req, res) {
   }
 });
 
-/*  "/api/contacts/:id"
- *    GET: find contact by id
- *    PUT: update contact by id
- *    DELETE: deletes contact by id
+/*  "/api/scores/:id"
+ *    GET: find score by id
+ *    PUT: update score by id
+ *    DELETE: deletes score by id
  */
+
+app.get("/api/scores/:id", function(req, res) {
+  db.collection(SCORES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to get contact");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});
+
+app.put("/api/scores/:id", function(req, res) {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection(SCORES_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to update contact");
+    } else {
+      updateDoc._id = req.params.id;
+      res.status(200).json(updateDoc);
+    }
+  });
+});
+
+app.delete("/api/scores/:id", function(req, res) {
+  db.collection(SCORES_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+    if (err) {
+      handleError(res, err.message, "Failed to delete contact");
+    } else {
+      res.status(200).json(req.params.id);
+    }
+  });
+});
