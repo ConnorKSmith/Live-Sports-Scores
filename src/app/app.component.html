@@ -1,7 +1,12 @@
+<app-header></app-header>
+
 <div class="container">
-  <button type="button" class="btn btn-primary">NHLtest</button>
-  <button type="button" class="btn btn-secondary">NBA</button>
+  <button type="button" class="btn btn-primary" routerLink="nhl-scores">NHL</button>
+  <button type="button" class="btn btn-secondary" routerLink="scores">NBA</button>
 </div>
-<div class="container">
-  <score-list></score-list>
-</div>
+<nav>
+  <router-outlet></router-outlet>
+</nav>
+<nav>
+
+<app-footer></app-footer>

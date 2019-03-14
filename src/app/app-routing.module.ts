@@ -8,15 +8,23 @@ import { ScoreDetailsComponent } from './scores/score-details/score-details.comp
 import { ScoreListComponent } from './scores/score-list/score-list.component';
 import { TestComponent } from './static/test/test.component';
 
+//NBA
+import { NbaScoreListComponent } from './scores/nba-scores/nba-score-list/nba-score-list.component';
+import { NbaScoreDetailsComponent } from './scores/nba-scores/nba-score-details/nba-score-details.component';
+
+//NHL
+import { NhlScoreListComponent } from './scores/nhl-scores/nhl-score-list/nhl-score-list.component';
+import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/nhl-score-details.component';
+
+
 const routes: Routes = [
-	{
-    path: '',
-    component: TestComponent
-  }
+  { path: '', component: TestComponent, pathMatch: 'full'},
+  { path: 'scores', component: ScoreListComponent},
+  { path: 'nhl-scores', component: NhlScoreListComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes, { enableTracing: true }) ],
+  exports: [ RouterModule ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

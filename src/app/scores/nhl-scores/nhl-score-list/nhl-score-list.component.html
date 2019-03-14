@@ -1,0 +1,19 @@
+<p>NHL SCORESSSSSSS</p>
+<div class="row">
+  <div class="col-md-5">
+    <h2>Scores</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+        *ngFor="let score of scores"
+        (click)="selectScore(score)"
+        [class.active]="score === selectedScore">
+        {{score.home_team}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <nhl-score-details
+      [nhlScore]="selectedScore">
+    </nhl-score-details>
+  </div>
+</div>
