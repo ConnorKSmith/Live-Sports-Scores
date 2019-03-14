@@ -7,9 +7,6 @@
         (click)="selectScore(score)"
         [class.active]="score === selectedScore">
         {{score.home_team}}
-        {{score.home_score}}
-        {{score.away_team}}
-        {{score.away_score}}
       </li>
     </ul>
     <button class="btn btn-warning" (click)="createNewScore()">New</button>
