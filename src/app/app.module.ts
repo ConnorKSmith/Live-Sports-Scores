@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -9,9 +9,11 @@ import { ContactDetailsComponent } from './contacts/contact-details/contact-deta
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ScoreDetailsComponent } from './scores/score-details/score-details.component';
 import { ScoreListComponent } from './scores/score-list/score-list.component';
+import { TestComponent } from './static/test/test.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent }
+  { path: 'test', component: ContactDetailsComponent},
+  { path: '', component: ContactListComponent,pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -20,7 +22,8 @@ const appRoutes: Routes = [
     ContactDetailsComponent,
     ContactListComponent,
     ScoreDetailsComponent,
-    ScoreListComponent
+    ScoreListComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,9 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
