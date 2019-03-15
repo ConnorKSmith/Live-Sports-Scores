@@ -73,6 +73,7 @@ header .overlay {
 .text-white {
   padding-top: 150px;
   color: white;
+  font-size: 38px;
 }
 
 @media (pointer: coarse) and (hover: none) {
@@ -81,5 +82,9 @@ header .overlay {
   }
   header video {
     display: none;
+  }
+  
+  .text-white {
+    font-size: 20px;
   }
 }
