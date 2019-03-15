@@ -32,7 +32,7 @@
 		    		</ng-template>
 		    	</p>
 		    </td>
-		    <td style="width: 15px;">
+		    <td style="width: 15px;" *ngIf="score.started">
 		    	<p>
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
 		    			{{score.home_score}}
@@ -51,15 +51,19 @@
 		    	</p>
 		    </td>
 		    <td style="width: 40px;">
-		    	<span *ngIf="score.time_remaining=='Live'" style="color: red; float:right; font-style: italic;">
+		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; float:right; font-style: italic;">
 	        		Live
 	        	</span>
-	        	<span *ngIf="score.time_remaining=='Final'" style="float:right;">
+	        	<ng-template #notLive> 
+		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="float:right;">
 	        		Final
-	        	</span>
-	        	<span *ngIf="score.time_remaining=='Preview'" style="color: blue; float:right;">
-	        		Preview
-	        	</span>
+		        	</span>
+		        	<ng-template #notStarted> 
+		        		<span style="float:right;">
+		        		{{score.time_remaining}}
+		        		</span>
+		        	</ng-template>
+		    	</ng-template>
 		    </td>
 		  </tr>
 		</table>

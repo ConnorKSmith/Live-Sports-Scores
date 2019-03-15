@@ -1,5 +1,6 @@
 .container-footer
 {
+	overflow-x: hidden; 
     min-height: 70vh;
     min-height: -webkit-calc(100vh - 160px);
     min-height: -moz-calc(100vh - 160px);

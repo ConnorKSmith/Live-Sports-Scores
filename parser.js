@@ -37,6 +37,19 @@ function parseNHL(data){
   			"name"];
   			gameJSON.away_score = gameObject["teams"]["away"]["score"];
   			gameJSON.time_remaining = gameObject["status"]["abstractGameState"];
+  			var codedGameState = gameObject["status"]["codedGameState"];
+  			if ( codedGameState == 1){
+  				var gameDateObject = new Date(gameObject["gameDate"]);
+  				var utcDate = new Date(gameDateObject.toUTCString());
+					utcDate.setHours(utcDate.getHours()-9);
+					var usDate = new Date(utcDate);
+					var mins = (usDate.getMinutes()>9 ? '' : '0') + usDate.getMinutes()
+					gameJSON.time_remaining = usDate.getHours() + ":" + mins + " ET";
+  				gameJSON.started = false;
+  			}
+  			else {
+  				gameJSON.started = true;
+  			}
   			gameJSON.date = stringDate;
   			gamesJSONArray.push(gameJSON);
   		}

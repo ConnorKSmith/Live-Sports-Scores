@@ -6,4 +6,5 @@ export class NhlScore {
 	away_score: number;
 	time_remaining: string;
 	date: string;
+	started: boolean;
 }

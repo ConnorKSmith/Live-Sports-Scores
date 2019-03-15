@@ -168,8 +168,6 @@ app.get("/api/scores/:id", function(req, res) {
   });
 });
 
-// EXTERNAL API CALLS
-
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1;
   var dd = this.getDate();
@@ -182,6 +180,8 @@ Date.prototype.yyyymmdd = function() {
 
 var date = new Date();
 var currDate = date.yyyymmdd();
+
+// EXTERNAL API CALLS
 
 // GETTING NHL SCORES - api call
 
