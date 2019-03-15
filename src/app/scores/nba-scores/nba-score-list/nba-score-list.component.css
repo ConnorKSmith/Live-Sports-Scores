@@ -52,7 +52,7 @@ table.center, p.nugget {
     table {
       border-collapse: separate;
       border-spacing: 0;
-      width: 70%;
+      width: 90%;
   }
   p.nugget {
       border-collapse: separate;
@@ -64,7 +64,6 @@ table.center, p.nugget {
   .scale {
       border-collapse: separate;
       border-spacing: 0;
-      width: 70%;
   }
 
   .mobile {
