@@ -67,4 +67,8 @@ table.center, p.nugget {
       width: 70%;
   }
 
+  .mobile {
+    display: none;
+  }
+
 }
