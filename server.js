@@ -2,6 +2,10 @@ const express = require('express');
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+var parser = require('./parser');
+
+// for external api calls
+const fetch = require("node-fetch");
 
 var CONTACTS_COLLECTION = "contacts";
 var SCORES_COLLECTION = "scores";
@@ -164,6 +168,15 @@ app.get("/api/scores/:id", function(req, res) {
   });
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+// GETTING NHL SCORES - api call
+
+app.get("/api/getScores", function(req, res) {
+    var jsonData;
+    fetch('https://statsapi.web.nhl.com/api/v1/schedule')
+    .then(response => response.json())
+    .then(data => {
+      var parsedJSON = parser.parseJSON(data, "nhl");
+      res.status(200).json(parsedJSON);
+    })
+    .catch(error => console.error(error))
 });

@@ -19,7 +19,7 @@ export class NhlScoreListComponent implements OnInit {
      this.nhlScoreService
       .getScores()
       .then((scores: NhlScore[]) => {
-        this.scores = scores.map((score) => {
+        this.scores = scores["games"].map((score) => {
           return score;
         });
       });

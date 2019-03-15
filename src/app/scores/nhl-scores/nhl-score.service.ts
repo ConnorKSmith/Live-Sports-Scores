@@ -8,9 +8,9 @@ export class NhlScoreService {
 
     constructor (private http: Http) {}
 
-    // get("/api/scores")
+    // get("/api/getscores")
     getScores(): Promise<void | NhlScore[]> {
-      return this.http.get(this.scoresUrl)
+      return this.http.get('api/getscores')
                  .toPromise()
                  .then(response => response.json() as NhlScore[])
                  .catch(this.handleError);

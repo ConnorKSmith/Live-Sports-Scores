@@ -25,6 +25,8 @@ import { NbaScoreDetailsComponent } from './scores/nba-scores/nba-score-details/
 import { NhlScoreService } from './scores/nhl-scores/nhl-score.service';
 import { NhlScoreListComponent } from './scores/nhl-scores/nhl-score-list/nhl-score-list.component';
 import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/nhl-score-details.component';
+
+// Static
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
