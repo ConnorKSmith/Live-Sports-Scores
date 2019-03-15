@@ -16,11 +16,15 @@ import { NbaScoreDetailsComponent } from './scores/nba-scores/nba-score-details/
 import { NhlScoreListComponent } from './scores/nhl-scores/nhl-score-list/nhl-score-list.component';
 import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/nhl-score-details.component';
 
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+
 
 const routes: Routes = [
-  { path: '', component: TestComponent, pathMatch: 'full'},
+  { path: '', component: ScoreListComponent, pathMatch: 'full'},
   { path: 'scores', component: ScoreListComponent},
-  { path: 'nhl-scores', component: NhlScoreListComponent}
+  { path: 'scores/nhl-scores', component: NhlScoreListComponent},
+  { path: 'scores/nba-scores', component: NbaScoreListComponent},
+  { path: 'disclaimer', component: DisclaimerComponent}
 ];
 
 @NgModule({

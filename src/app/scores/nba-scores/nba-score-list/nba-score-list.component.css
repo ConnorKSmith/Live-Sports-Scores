@@ -1,0 +1,70 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 35%;
+}
+
+p.nugget {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 35%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  border-collapse:separate; 
+  border-spacing:0 15px; 
+}
+
+tr:hover:not(.active) td {
+  background: #f0f0f0;
+  transition: 0.3s;
+  /*
+  cursor: pointer;
+  */
+}
+/*
+tr:hover td {
+  cursor: pointer;
+}
+
+tr.active {
+  background-color: #DCDCDC;
+  padding-bottom: 1em;
+  transition: 0.3s;
+}
+*/
+
+table.center, p.nugget {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+.scale {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 35%;
+  }
+
+@media (max-width: 850px) {
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 70%;
+  }
+  p.nugget {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 70%;
+  }
+
+
+  .scale {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 70%;
+  }
+
+}

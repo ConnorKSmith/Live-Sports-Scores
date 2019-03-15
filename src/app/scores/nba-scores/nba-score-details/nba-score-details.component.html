@@ -1,3 +1,31 @@
-<p>
-  nba-score-details works!
-</p>
+<div>
+	<div *ngIf="nbaScore" class="">
+		<div class="col-md-12">
+	    <h2>
+	    	{{nbaScore.home_team}} vs. {{nbaScore.away_team}}
+	    </h2>
+	  </div>
+	  <form class="col-md-12">
+	    <div class="form-group">
+	      <label for="nba-score-time-remaining">Time Remaining</label>
+	      <input class="form-control" name="score-time-remaining" [(ngModel)]="nbaScore.time_remaining" placeholder="Time Remaining"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="nba-score-home-team">Home Team Name</label>
+	      <input class="form-control" name="score-home-team" [(ngModel)]="nbaScore.home_team" placeholder="Home Team Name"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="nba-score-home-score">Home Score</label>
+	      <input class="form-control" name="score-home-score" [(ngModel)]="nbaScore.home_score" placeholder="Home Score"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="nba-score-away-team">Away Team Name</label>
+	      <input class="form-control" name="nba-score-away-team" [(ngModel)]="nbaScore.away_team" placeholder="Away Score"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="nba-score-away-score">Away Score</label>
+	      <input class="form-control" name="score-away-score" [(ngModel)]="nbaScore.away_score" placeholder="Away Score"/>
+	    </div>
+	  </form>
+	</div>
+</div>

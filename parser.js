@@ -3,11 +3,25 @@ module.exports = {
   
 
 
-  parseJSON: function (data, league) {	
-  	//console.log(data);
+  parseJSON: function (data, league, date) {
+  	var returnJSON;
+  	switch(league){
+  		case "nhl":
+  			return parseNHL(data);
+  			break;
+  		case "nba":
+  			return parseNBA(data, date);
+  			break;
+  		default: 
+  			return parseNHL(data);
+  	}	
+  }
+
+};
+
+function parseNHL(data){
   	var datesArray = data["dates"];
   	var returnJSON = new Object;
-  	//console.log(datesArray);
   	for (var i = 0; i<datesArray.length; i++){
   		var dateObject = datesArray[i];
   		var stringDate = dateObject["date"];
@@ -29,9 +43,33 @@ module.exports = {
   		returnJSON.games = gamesJSONArray;
   	}
   	return returnJSON;
-  }
+}
 
-
-
-
-};
+function parseNBA(data, date){
+		var gamesArray = data["games"];
+		var returnJSON = new Object;
+		var gamesJSONArray = [];
+		for (var i = 0; i<gamesArray.length; i++){
+			var gameJSON = new Object;
+			var gameObject = gamesArray[i];
+			gameJSON.nugget = gameObject["nugget"]["text"];
+		  gameJSON.home_team = gameObject["hTeam"]["triCode"];
+			gameJSON.home_score = gameObject["hTeam"]["score"];
+			gameJSON.away_team = gameObject["vTeam"]["triCode"];
+			gameJSON.away_score = gameObject["vTeam"]["score"];
+			var isGameActivated = gameObject["isGameActivated"];
+			(isGameActivated) ? gameJSON.time_remaining = "Live" : gameJSON.time_remaining = "Final";
+			if (gameObject["statusNum"] == 1){
+				gameJSON.time_remaining = gameObject["startTimeEastern"];
+				gameJSON.started = false;
+				gameJSON.nugget = "Game will start at " + gameJSON.time_remaining;
+			}
+			if (gameObject["statusNum"] == 2 || gameObject["statusNum"] == 3){
+				gameJSON.started = true;
+			}
+			gameJSON.date = date; 
+			gamesJSONArray.push(gameJSON);
+		}
+		returnJSON.games = gamesJSONArray;
+		return returnJSON;
+}

@@ -1,3 +1,82 @@
-<p>
-  nba-score-list works!
-</p>
+<div style="">
+<div class="row">
+  <div class="col-md-12">
+    <h2 style="text-align: center;" >
+    	<img src="https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Association_logo.svg" style="width:48px;height:56px; margin-right: 5px;">
+    	NBA Scores
+    </h2>
+    <div style="overflow-x:hidden;">
+		<table class="center" style="">
+		  <tr *ngFor="let score of scores"
+	        (click)="selectScore(score)"
+	        [class.active]="score === selectedScore">
+		    <td style="width: 80%" title="{{score.nugget}}">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #homeWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<span style='float:left; font-weight: bold'>{{score.home_team}}</span>
+		    		</ng-template>
+		    		<ng-template #homeLoserName>
+		    			<span style='float:left;'>{{score.home_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; then awayWinnerName else awayLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #awayWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<span style='float:left; font-weight: bold'>{{score.away_team}}</span>
+		    		</ng-template>
+		    		<ng-template #awayLoserName>
+		    			<span style='float:left;'>{{score.away_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <td style="width: 15px;" *ngIf="score.started">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
+		    			{{score.home_score}}
+		    		</span>
+		    		<ng-template #homeLoser> 
+		    			<span style='float:right;'>{{score.home_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; else awayLoser" style='float:right; font-weight: bold'>	
+		    			{{score.away_score}}
+		    		</span>
+		    		<ng-template #awayLoser> 
+		    			<span style='float:right;'>{{score.away_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <td style="width: 40px;">
+		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; float:right; font-style: italic;">
+	        		Live
+	        	</span>
+	        	<ng-template #notLive> 
+		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="float:right;">
+	        		Final
+		        	</span>
+		        	<ng-template #notStarted> 
+		        		<span style="float:right;">
+		        		{{score.time_remaining}}
+		        		</span>
+		        	</ng-template>
+		    	</ng-template>
+		    </td>
+		  </tr>
+		</table>
+		<p class='nugget'>* Hover over game for info</p>
+	</div>
+  </div>
+  <!--
+  <div class="col-md-12 scale" style='text-align: center; margin-left:auto; margin-right:auto;'>
+    <nba-score-details
+      [nbaScore]="selectedScore">
+    </nba-score-details>
+
+  </div>
+  -->
+</div>
+</div>

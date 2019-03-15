@@ -168,14 +168,42 @@ app.get("/api/scores/:id", function(req, res) {
   });
 });
 
+// EXTERNAL API CALLS
+
+Date.prototype.yyyymmdd = function() {
+  var mm = this.getMonth() + 1;
+  var dd = this.getDate();
+
+  return [this.getFullYear(),
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd
+         ].join('');
+};
+
+var date = new Date();
+var currDate = date.yyyymmdd();
+
 // GETTING NHL SCORES - api call
 
-app.get("/api/getScores", function(req, res) {
+app.get("/api/getNHLScores", function(req, res) {
     var jsonData;
     fetch('https://statsapi.web.nhl.com/api/v1/schedule')
     .then(response => response.json())
     .then(data => {
-      var parsedJSON = parser.parseJSON(data, "nhl");
+      var parsedJSON = parser.parseJSON(data, "nhl", currDate);
+      res.status(200).json(parsedJSON);
+    })
+    .catch(error => console.error(error))
+});
+
+// NBA SCORES
+
+app.get("/api/getNBAScores", function(req, res) {
+    var jsonData;
+    fetch('http://data.nba.net/prod/v2/'+ currDate +'/scoreboard.json')
+    .then(response => response.json())
+    .then(data => {
+      var parsedJSON = parser.parseJSON(data, "nba", currDate);
       res.status(200).json(parsedJSON);
     })
     .catch(error => console.error(error))

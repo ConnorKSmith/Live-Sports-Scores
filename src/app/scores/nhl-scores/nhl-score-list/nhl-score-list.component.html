@@ -1,28 +1,57 @@
-<p>NHL SCORESSSSSSS</p>
+<div style="">
 <div class="row">
-  <div class="col-md-5">
-    <h2 style="text-align: center;" >Scores</h2>
-	    <ul class="list-group" style="display: inline-block;">
-	      <li style="text-align: center;" class="list-group-item"
-	        *ngFor="let score of scores"
+  <div class="col-md-12">
+    <h2 style="text-align: center;" >
+    	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/05_NHL_Shield.svg/800px-05_NHL_Shield.svg.png" style="width:48px;height:56px; margin-right: 5px;">
+    	NHL Scores
+    </h2>
+    <div style="overflow-x:hidden;">
+		<table class="center" style="">
+		  <tr *ngFor="let score of scores"
 	        (click)="selectScore(score)"
 	        [class.active]="score === selectedScore">
-		        <span>
-		        	<p>{{score.home_team}}</p>
-		        	<p>{{score.away_team}}</p>
-		        </span>
-	        	<span *ngIf="score.time_remaining=='Live'" style="color: red; float:right; font-style: italic;">
-	        	Live
-	        	</span>
-	      </li>
-	    </ul>
-	    <ul class="list-group" style="display: inline-block;">
-	      <li style="text-align: center;" class="list-group-item"
-	        *ngFor="let score of scores"
-	        (click)="selectScore(score)"
-	        [class.active]="score === selectedScore">
-	        	Status:
-	        	<span *ngIf="score.time_remaining=='Live'" style="color: red; float:right; font-style: italic;">
+		    <td class="teams" style="width: 90%;" title="Click for game details">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #homeWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<span style='float:left; font-weight: bold'>{{score.home_team}}</span>
+		    		</ng-template>
+		    		<ng-template #homeLoserName>
+		    			<span style='float:left;'>{{score.home_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; then awayWinnerName else awayLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #awayWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<span style='float:left; font-weight: bold'>{{score.away_team}}</span>
+		    		</ng-template>
+		    		<ng-template #awayLoserName>
+		    			<span style='float:left;'>{{score.away_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <td style="width: 15px;">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
+		    			{{score.home_score}}
+		    		</span>
+		    		<ng-template #homeLoser> 
+		    			<span style='float:right;'>{{score.home_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; else awayLoser" style='float:right; font-weight: bold'>	
+		    			{{score.away_score}}
+		    		</span>
+		    		<ng-template #awayLoser> 
+		    			<span style='float:right;'>{{score.away_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <td style="width: 40px;">
+		    	<span *ngIf="score.time_remaining=='Live'" style="color: red; float:right; font-style: italic;">
 	        		Live
 	        	</span>
 	        	<span *ngIf="score.time_remaining=='Final'" style="float:right;">
@@ -31,12 +60,17 @@
 	        	<span *ngIf="score.time_remaining=='Preview'" style="color: blue; float:right;">
 	        		Preview
 	        	</span>
-	      </li>
-	    </ul>
+		    </td>
+		  </tr>
+		</table>
+	</div>
   </div>
-  <div class="col-md-5 col-md-offset-2">
+<!--
+  <div class="col-md-12" style="width: 400px; ">
     <nhl-score-details
       [nhlScore]="selectedScore">
     </nhl-score-details>
   </div>
+-->
+</div>
 </div>

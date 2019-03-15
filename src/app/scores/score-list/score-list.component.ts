@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Score } from '../score';
 import { ScoreService } from '../score.service';
 import { ScoreDetailsComponent } from '../score-details/score-details.component';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'score-list',
@@ -11,13 +12,13 @@ import { ScoreDetailsComponent } from '../score-details/score-details.component'
 })
 
 export class ScoreListComponent implements OnInit {
-
   scores: Score[]
   selectedScore: Score
 
   constructor(private scoreService: ScoreService) { }
 
   ngOnInit() {
+     $("video").prop('muted', true);
      this.scoreService
       .getScores()
       .then((scores: Score[]) => {

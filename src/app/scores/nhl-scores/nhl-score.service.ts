@@ -10,7 +10,7 @@ export class NhlScoreService {
 
     // get("/api/getscores")
     getScores(): Promise<void | NhlScore[]> {
-      return this.http.get('api/getscores')
+      return this.http.get('api/getnhlscores')
                  .toPromise()
                  .then(response => response.json() as NhlScore[])
                  .catch(this.handleError);

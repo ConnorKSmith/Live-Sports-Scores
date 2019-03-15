@@ -1,23 +1,40 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header page-scroll">
+        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+           </button>
             <a class="navbar-brand page-scroll" href="">
             	<span class="glyphicon glyphicon-fire" style="color:red"></span>
             	Live Scores
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="btn-group nav navbar-nav navbar-right" role="group" aria-label="">
                 <li>
-                    <a class="page-scroll" href="nhl-scores">
-                    	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/05_NHL_Shield.svg/800px-05_NHL_Shield.svg.png" style="width:20px;height:20px; margin-right: 5px;">
+                    <a class="page-scroll" href="scores/nhl-scores">
+                    	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/05_NHL_Shield.svg/800px-05_NHL_Shield.svg.png" style="width:24px;height:28px; margin-right: 5px;">
                     	NHL
                     </a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="scores">
-                    	<img src="https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Association_logo.svg" style="width:20px;height:20px;">
+                    <a class="page-scroll" href="scores/nba-scores">
+                    	<img src="https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Association_logo.svg" style="width:28px;height:28px;">
                     	NBA
+                    </a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="scores/mlb-scores" style="margin-top: 4px;">
+                    	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Major_League_Baseball_logo.svg/1920px-Major_League_Baseball_logo.svg.png" style="width:32px;height:18px; margin-right: 5px;">
+                    	MLB
+                    </a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="scores/nfl-scores">
+                    	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/800px-National_Football_League_logo.svg.png" style="width:20px;height:28px; margin-right: 5px;">
+                    	NFL
                     </a>
                 </li>
             </ul>

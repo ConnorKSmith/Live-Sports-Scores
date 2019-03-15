@@ -1,0 +1,72 @@
+header {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+  font-family: Palatino Linotype, sans-serif;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container-score {
+  position: relative;
+  z-index: 2;
+}
+
+.container-buttons {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.button-row {
+  padding-top: 80px;
+  text-align: center;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.my-5 {
+
+}
+
+.glyphicon {
+  padding-right: 15px;
+}
+
+.text-white {
+  padding-top: 150px;
+  color: white;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://asset-sports.abs-cbn.com/web/dev/articles/1552518008_gettyimages-1128984653.jpg') black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}

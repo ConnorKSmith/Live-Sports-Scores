@@ -29,6 +29,7 @@ import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/
 // Static
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FooterComponent } from './footer/footer.component';
     NhlScoreListComponent,
     NhlScoreDetailsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DisclaimerComponent
   ],
   imports: [
     BrowserModule,
