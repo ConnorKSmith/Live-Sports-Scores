@@ -41,7 +41,6 @@ function parseNHL(data){
   			if ( codedGameState == 1){
   				var gameDateObject = new Date(gameObject["gameDate"]);
   				var utcDate = new Date(gameDateObject.toUTCString());
-					utcDate.setHours(utcDate.getHours()-9);
 					var usDate = new Date(utcDate);
 					var mins = (usDate.getMinutes()>9 ? '' : '0') + usDate.getMinutes()
 					gameJSON.time_remaining = usDate.getHours() + ":" + mins + " ET";
