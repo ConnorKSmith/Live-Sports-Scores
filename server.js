@@ -208,3 +208,10 @@ app.get("/api/getNBAScores", function(req, res) {
     })
     .catch(error => console.error(error))
 });
+
+
+//  heroky routing
+
+app.get('*', function (req, res) {
+  res.sendfile('./dist/index.html'); // load our index.html file
+});
