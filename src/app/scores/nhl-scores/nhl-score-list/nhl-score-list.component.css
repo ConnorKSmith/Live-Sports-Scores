@@ -38,6 +38,7 @@ tr:hover td {
 
 
 .box-score-small {
+	white-space: nowrap;
 	margin-left: auto;
     margin-right: auto;
 	font-size: 12px;
@@ -48,8 +49,8 @@ tr:hover td {
 }
 
 .nhl-detail-logo {
-	width: 150px;
-	height: 150px;
+	display:inline;
+	width: 47%;
 }
 
 tr.active {
@@ -67,8 +68,15 @@ table.center {
 }
 
 .modal-row1 {
-	padding-top: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 100%;
+	height: auto;
 }
+
+.versus {
+	padding-top: 50px;
+}	
 
 @media (max-width: 850px) {
     table {
@@ -76,4 +84,16 @@ table.center {
 		  border-spacing: 0;
 		  width: 90%;
 	}
+
+	.versus {
+		display: none;
+	}
+
+	.box-score-small {
+		white-space: nowrap;
+		margin-left: auto;
+	    margin-right: auto;
+		font-size: 8px;
+	}
+
 }

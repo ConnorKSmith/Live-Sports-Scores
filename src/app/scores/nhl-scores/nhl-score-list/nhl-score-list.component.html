@@ -74,16 +74,11 @@
 	</div>
   </div>
 <ngx-smart-modal #myModal identifier="myModal" class='nhl-modal'>
-  <div *ngIf="myModal.hasData()" class="col-md-12 modal-row1">
-    
-    <div class="col-md-6 center-text">
-        <img src="{{myModal.getData().home_logo_link}}" class='nhl-detail-logo'>
-    	<h5>{{myModal.getData().home_team}}</h5>
-    </div>
-    <div class="col-md-6 center-text">
-    	<img src="{{myModal.getData().away_logo_link}}" class='nhl-detail-logo'>
-    	<h5>{{myModal.getData().away_team}}</h5>
-    </div>
+<div *ngIf="myModal.hasData()">
+  <div class="col-md-12 modal-row1">
+    <img class='nhl-detail-logo' src="{{myModal.getData().home_logo_link}}">
+	<div style="display:inline;width:1%;">vs</div>
+	<img class='nhl-detail-logo' src="{{myModal.getData().away_logo_link}}">
   </div>
   <div class="col-md-12 center-text full-width">
     	<table class='full-width box-score-small table table-bordered type-list2'>
@@ -110,7 +105,10 @@
     		</tr>
     	</table>
     </div>
-  <div class='center-text'><button (click)="myModal.close();">Close</button></div>
+  <div class='center-text'>
+  	<button class='btn btn-warning' (click)="myModal.close();">Close</button>
+  </div>
+</div>
 </ngx-smart-modal>
 
 <!--
