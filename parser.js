@@ -3,7 +3,7 @@ module.exports = {
   
 
 
-  parseJSON: function (data, league, date) {
+parseJSON: function (data, league, date) {
   	var returnJSON;
   	switch(league){
   		case "nhl":
@@ -19,6 +19,7 @@ module.exports = {
 
 };
 
+// Build NHL JSON Object to send to front end
 function parseNHL(data){
   	var datesArray = data["dates"];
   	var returnJSON = new Object;
@@ -50,6 +51,31 @@ function parseNHL(data){
   			else {
   				gameJSON.started = true;
   			}
+
+  			// Fields for game details
+  			gameJSON.home_team_id = gameJSON.away_num_wins = gameObject["teams"]["home"]["team"]["id"];
+
+				gameJSON.home_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
+				gameJSON.home_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
+				gameJSON.home_num_otl = gameObject["teams"]["away"]["leagueRecord"]["ot"];
+				gameJSON.home_period1_goals = 0;
+				gameJSON.home_period2_goals = 0;
+				gameJSON.home_period3_goals = 0;
+				gameJSON.home_logo_link = "https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/" 
+					+ gameJSON.home_team_id + ".svg";
+
+				gameJSON.away_team_id = gameJSON.away_num_wins = gameObject["teams"]["away"]["team"]["id"];
+
+				gameJSON.away_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
+				gameJSON.away_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
+				gameJSON.away_num_otl = gameObject["teams"]["away"]["leagueRecord"]["ot"];
+				gameJSON.away_period1_goals = 0;
+				gameJSON.away_period2_goals = 0;
+				gameJSON.away_period3_goals = 0;
+				gameJSON.away_logo_link = "https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/" 
+					+ gameJSON.away_team_id + ".svg";
+
+
   			gameJSON.date = stringDate;
   			gamesJSONArray.push(gameJSON);
   		}
@@ -58,6 +84,8 @@ function parseNHL(data){
   	return returnJSON;
 }
 
+
+// Build NBA Json object to send to front end
 function parseNBA(data, date){
 		var gamesArray = data["games"];
 		var returnJSON = new Object;
@@ -65,11 +93,13 @@ function parseNBA(data, date){
 		for (var i = 0; i<gamesArray.length; i++){
 			var gameJSON = new Object;
 			var gameObject = gamesArray[i];
+			
+			// Fields for Scores page
 			gameJSON.nugget = gameObject["nugget"]["text"];
 		  gameJSON.home_team = gameObject["hTeam"]["triCode"];
-			gameJSON.home_score = gameObject["hTeam"]["score"];
+			gameJSON.home_score = parseInt(gameObject["hTeam"]["score"]);
 			gameJSON.away_team = gameObject["vTeam"]["triCode"];
-			gameJSON.away_score = gameObject["vTeam"]["score"];
+			gameJSON.away_score = parseInt(gameObject["vTeam"]["score"]);
 			var isGameActivated = gameObject["isGameActivated"];
 			(isGameActivated) ? gameJSON.time_remaining = "Live" : gameJSON.time_remaining = "Final";
 			if (gameObject["statusNum"] == 1){
@@ -81,6 +111,7 @@ function parseNBA(data, date){
 				gameJSON.started = true;
 			}
 			gameJSON.date = date; 
+
 			gamesJSONArray.push(gameJSON);
 		}
 		returnJSON.games = gamesJSONArray;

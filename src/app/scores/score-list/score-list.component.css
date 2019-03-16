@@ -76,6 +76,24 @@ header .overlay {
   font-size: 38px;
 }
 
+.img-container {
+    position:relative;
+}
+
+.img2 {
+    border:1px solid #021a40;
+    -moz-filter:brightness(50%);
+}
+
+.img1 {
+  transition: all .2s ease-in-out; 
+}
+
+.img1:hover {
+    transform: scale(1.2); 
+}
+
+
 @media (pointer: coarse) and (hover: none) {
   header {
     background: url('https://asset-sports.abs-cbn.com/web/dev/articles/1552518008_gettyimages-1128984653.jpg') black no-repeat center center scroll;
@@ -83,7 +101,7 @@ header .overlay {
   header video {
     display: none;
   }
-  
+
   .text-white {
     font-size: 20px;
   }

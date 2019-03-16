@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NhlScore } from '../nhl-score';
 import { NhlScoreService } from '../nhl-score.service';
 import { NhlScoreDetailsComponent } from '../nhl-score-details/nhl-score-details.component';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-nhl-score-list',
@@ -13,7 +14,8 @@ export class NhlScoreListComponent implements OnInit {
   scores: NhlScore[]
   selectedScore: NhlScore
 
-  constructor(private nhlScoreService: NhlScoreService) { }
+  constructor(private nhlScoreService: NhlScoreService, 
+  			  public ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit() {
      this.nhlScoreService
@@ -32,7 +34,8 @@ export class NhlScoreListComponent implements OnInit {
   }
 
   selectScore(score: NhlScore) {
-    this.selectedScore = score
+  	this.ngxSmartModalService.setModalData(score, 'myModal', true);
+    this.selectedScore = score;
   }
 
 }

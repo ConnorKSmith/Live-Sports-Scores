@@ -37,9 +37,15 @@ tr.active {
 }
 */
 
+.bold-text {
+  font-weight: bold;
+}
+
 table.center, p.nugget {
     margin-left:auto; 
     margin-right:auto;
+    border-collapse:separate; 
+    border-spacing:1px 10px;
 }
 
 .scale {

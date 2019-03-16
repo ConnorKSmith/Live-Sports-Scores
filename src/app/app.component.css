@@ -6,3 +6,8 @@
     min-height: -moz-calc(100vh - 160px);
     min-height: calc(100vh - 160px);
 }
+
+
+.bold-text {
+	font-weight: bold;
+}

@@ -1,3 +1,8 @@
+  <div *ngIf="myModal.hasData()">
+    <pre>{{ myModal.getData() | json }}</pre>
+  </div>
+
+  <button (click)="myModal.close()">Close</button>
 <div *ngIf="nhlScore" class="">
 	<div class="col-md-12">
     <h2  align="center">

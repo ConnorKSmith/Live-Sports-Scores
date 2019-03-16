@@ -8,9 +8,10 @@
     <div style="overflow-x:hidden;">
 		<table class="center" style="">
 		  <tr *ngFor="let score of scores"
-	        (click)="selectScore(score)"
-	        [class.active]="score === selectedScore">
-		    <td class="teams" style="width: 90%;" title="Click for game details">
+	        (click)="
+	        	selectScore(score);
+	        	ngxSmartModalService.getModal('myModal').open()">
+		    <td class="teams" style="width: 70%;" title="">
 		    	<p>
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #homeWinnerName>
@@ -32,7 +33,7 @@
 		    		</ng-template>
 		    	</p>
 		    </td>
-		    <td style="width: 15px;" *ngIf="score.started">
+		    <td style="width: 15px;" *ngIf="score.started; else notStarted">
 		    	<p>
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
 		    			{{score.home_score}}
@@ -50,16 +51,19 @@
 		    		</ng-template>
 		    	</p>
 		    </td>
-		    <td style="width: 40px;">
-		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; float:right; font-style: italic;">
+		    <ng-template #notStarted>
+		    	<td></td>
+		    </ng-template>
+		    <td style="width: 23%; text-align: center;">
+		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; font-style: italic;">
 	        		Live
 	        	</span>
 	        	<ng-template #notLive> 
-		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="float:right;">
-	        		Final
+		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="">
+	        		<span class="bold-text" style="">Final</span>
 		        	</span>
 		        	<ng-template #notStarted> 
-		        		<span style="float:right;">
+		        		<span class="preview-text" style="">
 		        		{{score.time_remaining}}
 		        		</span>
 		        	</ng-template>
@@ -69,6 +73,46 @@
 		</table>
 	</div>
   </div>
+<ngx-smart-modal #myModal identifier="myModal" class='nhl-modal'>
+  <div *ngIf="myModal.hasData()" class="col-md-12 modal-row1">
+    
+    <div class="col-md-6 center-text">
+        <img src="{{myModal.getData().home_logo_link}}" class='nhl-detail-logo'>
+    	<h5>{{myModal.getData().home_team}}</h5>
+    </div>
+    <div class="col-md-6 center-text">
+    	<img src="{{myModal.getData().away_logo_link}}" class='nhl-detail-logo'>
+    	<h5>{{myModal.getData().away_team}}</h5>
+    </div>
+  </div>
+  <div class="col-md-12 center-text full-width">
+    	<table class='full-width box-score-small table table-bordered type-list2'>
+    		<tr class="box-score-row">
+    			<th></th>
+    			<th>1st</th>
+    			<th>2nd</th>
+    			<th>3rd</th>
+    			<th>Final</th>
+    		</tr>
+    		<tr class="box-score-row">
+    			<td>{{myModal.getData().home_team}}</td>
+    			<td>{{myModal.getData().home_period1_goals}}</td>
+    			<td>{{myModal.getData().home_period2_goals}}</td>
+    			<td>{{myModal.getData().home_period3_goals}}</td>
+    			<td>{{myModal.getData().home_score}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{myModal.getData().away_team}}</td>
+    			<td>{{myModal.getData().away_period1_goals}}</td>
+    			<td>{{myModal.getData().away_period2_goals}}</td>
+    			<td>{{myModal.getData().away_period3_goals}}</td>
+    			<td>{{myModal.getData().away_score}}</td>
+    		</tr>
+    	</table>
+    </div>
+  <div class='center-text'><button (click)="myModal.close();">Close</button></div>
+</ngx-smart-modal>
+
 <!--
   <div class="col-md-12" style="width: 400px; ">
     <nhl-score-details

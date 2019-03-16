@@ -10,7 +10,7 @@
 		  <tr *ngFor="let score of scores"
 	        (click)="selectScore(score)"
 	        [class.active]="score === selectedScore">
-		    <td style="width: 80%" title="{{score.nugget}}">
+		    <td style="width: 70%" title="{{score.nugget}}">
 		    	<p>
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #homeWinnerName>
@@ -32,7 +32,7 @@
 		    		</ng-template>
 		    	</p>
 		    </td>
-		    <td style="width: 15px;" *ngIf="score.started">
+		    <td style="width: 15px;" *ngIf="score.started; else notStarted">
 		    	<p>
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
 		    			{{score.home_score}}
@@ -50,16 +50,17 @@
 		    		</ng-template>
 		    	</p>
 		    </td>
-		    <td style="width: 40px;">
-		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; float:right; font-style: italic;">
+		    <ng-template #notStarted><td></td></ng-template>
+		    <td style="width: 23%; text-align: center;">
+		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; font-style: italic;">
 	        		Live
 	        	</span>
 	        	<ng-template #notLive> 
-		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="float:right;">
-	        		Final
+		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="">
+	        		<span class="bold-text">Final</span>
 		        	</span>
 		        	<ng-template #notStarted> 
-		        		<span style="float:right;">
+		        		<span style="">
 		        		{{score.time_remaining}}
 		        		</span>
 		        	</ng-template>

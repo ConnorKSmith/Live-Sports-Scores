@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule  } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module'; 
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 import { AppComponent } from './app.component';
 
@@ -51,7 +52,8 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [
     ContactService,
