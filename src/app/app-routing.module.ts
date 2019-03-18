@@ -16,6 +16,13 @@ import { NbaScoreDetailsComponent } from './scores/nba-scores/nba-score-details/
 import { NhlScoreListComponent } from './scores/nhl-scores/nhl-score-list/nhl-score-list.component';
 import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/nhl-score-details.component';
 
+//NFL
+import { NflScoresListComponent } from './scores/nfl-scores/nfl-scores-list/nfl-scores-list.component';
+
+//MLB
+import { MlbScoresListComponent } from './scores/mlb-scores/mlb-scores-list/mlb-scores-list.component';
+
+
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 
@@ -24,7 +31,9 @@ const routes: Routes = [
   { path: 'scores', component: ScoreListComponent},
   { path: 'scores/nhl-scores', component: NhlScoreListComponent},
   { path: 'scores/nba-scores', component: NbaScoreListComponent},
-  { path: 'disclaimer', component: DisclaimerComponent}
+  { path: 'disclaimer', component: DisclaimerComponent},
+  { path: 'scores/nfl-scores', component: NflScoresListComponent},
+  { path: 'scores/mlb-scores', component: MlbScoresListComponent}
 ];
 
 @NgModule({

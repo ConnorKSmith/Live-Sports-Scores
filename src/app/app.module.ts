@@ -31,6 +31,8 @@ import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { NflScoresListComponent } from './scores/nfl-scores/nfl-scores-list/nfl-scores-list.component';
+import { MlbScoresListComponent } from './scores/mlb-scores/mlb-scores-list/mlb-scores-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
     NhlScoreDetailsComponent,
     HeaderComponent,
     FooterComponent,
-    DisclaimerComponent
+    DisclaimerComponent,
+    NflScoresListComponent,
+    MlbScoresListComponent
   ],
   imports: [
     BrowserModule,

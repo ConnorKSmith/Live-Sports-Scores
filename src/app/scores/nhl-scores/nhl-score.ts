@@ -9,6 +9,8 @@ export class NhlScore {
 	home_period1_goals: number;
 	home_period2_goals: number;
 	home_period3_goals: number;
+	home_ot_goals: number;
+	home_so_goals: number;
 	home_score:	number;
 	home_logo_link: string;
 
@@ -20,6 +22,8 @@ export class NhlScore {
 	away_period1_goals: number;
 	away_period2_goals: number;
 	away_period3_goals: number;
+	away_ot_goals: number;
+	away_so_goals: number;
 	away_score:	number;
 	away_logo_link: string;
 
@@ -27,5 +31,8 @@ export class NhlScore {
 	time_remaining: string;
 	date: string;
 
+
 	started: boolean;
+	overtime: boolean;
+	shootout: boolean;
 }

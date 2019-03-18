@@ -58,9 +58,51 @@ function parseNHL(data){
 				gameJSON.home_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
 				gameJSON.home_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
 				gameJSON.home_num_otl = gameObject["teams"]["away"]["leagueRecord"]["ot"];
+
 				gameJSON.home_period1_goals = 0;
 				gameJSON.home_period2_goals = 0;
 				gameJSON.home_period3_goals = 0;
+				gameJSON.home_ot_goals = 0; 
+				gameJSON.home_so_goals = 0; 
+
+				gameJSON.away_period1_goals = 0;
+				gameJSON.away_period2_goals = 0;
+				gameJSON.away_period3_goals = 0;
+				gameJSON.away_ot_goals = 0; 
+				gameJSON.away_so_goals = 0; 
+
+				if (gameObject["linescore"]["currentPeriod"] == 4){
+					gameJSON.overtime = true;
+				}
+				else if (gameObject["linescore"]["currentPeriod"] == 5){
+					gameJSON.overtime = true;
+					gameJSON.shootout = true;
+					gameJSON.home_so_goals = gameObject["linescore"]["shootoutInfo"]["home"]["scores"];
+					gameJSON.away_so_goals = gameObject["linescore"]["shootoutInfo"]["away"]["scores"];
+				}
+
+				var periods = gameObject["linescore"]["periods"];
+				for ( var p = 0; p<periods.length; p++){
+					var period = periods[p];
+
+					if (period["num"] == 1){
+						gameJSON.home_period1_goals = period["home"]["goals"];
+						gameJSON.away_period1_goals = period["away"]["goals"];
+					}
+					else if (period["num"] == 2){
+						gameJSON.home_period2_goals = period["home"]["goals"];
+						gameJSON.away_period2_goals = period["away"]["goals"];
+					}
+					else if (period["num"] == 3){
+						gameJSON.home_period3_goals = period["home"]["goals"];
+						gameJSON.away_period3_goals = period["away"]["goals"];
+					}
+					else if (period["num"] == 4) {
+						gameJSON.home_ot_goals = period["home"]["goals"];
+						gameJSON.away_ot_goals = period["away"]["goals"];
+					}
+				}
+				
 				gameJSON.home_logo_link = "https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/" 
 					+ gameJSON.home_team_id + ".svg";
 
@@ -69,9 +111,6 @@ function parseNHL(data){
 				gameJSON.away_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
 				gameJSON.away_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
 				gameJSON.away_num_otl = gameObject["teams"]["away"]["leagueRecord"]["ot"];
-				gameJSON.away_period1_goals = 0;
-				gameJSON.away_period2_goals = 0;
-				gameJSON.away_period3_goals = 0;
 				gameJSON.away_logo_link = "https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/" 
 					+ gameJSON.away_team_id + ".svg";
 

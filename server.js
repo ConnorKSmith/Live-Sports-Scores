@@ -115,7 +115,7 @@ var currDate = date.yyyymmdd();
 
 app.get("/api/getNHLScores", function(req, res) {
     var jsonData;
-    fetch('https://statsapi.web.nhl.com/api/v1/schedule')
+    fetch('https://statsapi.web.nhl.com/api/v1/schedule?expand=schedule.linescore')
     .then(response => response.json())
     .then(data => {
       var parsedJSON = parser.parseJSON(data, "nhl", currDate);

@@ -50,7 +50,11 @@ tr:hover td {
 
 .nhl-detail-logo {
 	display:inline;
-	width: 47%;
+	width: 40%;
+}
+
+.shootout-float-right {
+	float: right;
 }
 
 tr.active {

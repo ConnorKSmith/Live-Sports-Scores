@@ -60,7 +60,12 @@
 	        	</span>
 	        	<ng-template #notLive> 
 		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="">
-	        		<span class="bold-text" style="">Final</span>
+
+	        			<span class="bold-text" style="">Final</span>
+	        			<span class="bold-text" *ngIf="score.shootout; else notShootout">/SO</span>
+	        			<ng-template #notShootout>
+	        				<span class="bold-text" *ngIf="score.overtime;">/OT</span>
+	        			</ng-template>
 		        	</span>
 		        	<ng-template #notStarted> 
 		        		<span class="preview-text" style="">
@@ -76,9 +81,9 @@
 <ngx-smart-modal #myModal identifier="myModal" class='nhl-modal'>
 <div *ngIf="myModal.hasData()">
   <div class="col-md-12 modal-row1">
-    <img class='nhl-detail-logo' src="{{myModal.getData().home_logo_link}}">
+    <img src="assets/logos/nhl-logos/{{myModal.getData().home_team_id}}.svg" width="47%" style="display:inline;">
 	<div style="display:inline;width:1%;">vs</div>
-	<img class='nhl-detail-logo' src="{{myModal.getData().away_logo_link}}">
+	<img src="assets/logos/nhl-logos/{{myModal.getData().away_team_id}}.svg" width="47%" style="display:inline;">
   </div>
   <div class="col-md-12 center-text full-width">
     	<table class='full-width box-score-small table table-bordered type-list2'>
@@ -87,6 +92,10 @@
     			<th>1st</th>
     			<th>2nd</th>
     			<th>3rd</th>
+    			<th *ngIf="myModal.getData().overtime;">
+    				OT
+    			</th>
+    			<th *ngIf="myModal.getData().shootout;">(SO)</th>
     			<th>Final</th>
     		</tr>
     		<tr class="box-score-row">
@@ -94,6 +103,11 @@
     			<td>{{myModal.getData().home_period1_goals}}</td>
     			<td>{{myModal.getData().home_period2_goals}}</td>
     			<td>{{myModal.getData().home_period3_goals}}</td>
+    			<td *ngIf="myModal.getData().overtime;">
+    				{{myModal.getData().home_ot_goals}}
+    		
+    			</td>
+    			<td *ngIf="myModal.getData().shootout;">({{myModal.getData().home_so_goals}})</td>
     			<td>{{myModal.getData().home_score}}</td>
     		</tr>
     		<tr>
@@ -101,6 +115,10 @@
     			<td>{{myModal.getData().away_period1_goals}}</td>
     			<td>{{myModal.getData().away_period2_goals}}</td>
     			<td>{{myModal.getData().away_period3_goals}}</td>
+    			<td *ngIf="myModal.getData().overtime;">
+    				{{myModal.getData().away_ot_goals}}
+    			</td>
+    			<td *ngIf="myModal.getData().shootout;">({{myModal.getData().away_so_goals}})</td>
     			<td>{{myModal.getData().away_score}}</td>
     		</tr>
     	</table>
