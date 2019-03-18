@@ -37,6 +37,13 @@ tr.active {
 }
 */
 
+.table-logo {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
 .bold-text {
   font-weight: bold;
 }

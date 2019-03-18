@@ -53,8 +53,23 @@ tr:hover td {
 	width: 40%;
 }
 
+#text {
+	text-align: justify;
+}
+
 .shootout-float-right {
 	float: right;
+}
+
+.table-logo {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
+.inline {
+	display: inline;
 }
 
 tr.active {

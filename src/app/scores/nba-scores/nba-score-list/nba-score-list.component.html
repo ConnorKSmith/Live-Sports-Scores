@@ -15,9 +15,11 @@
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #homeWinnerName>
 		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<img src="assets/logos/nba-logos/{{score.home_team | lowercase }}.png" class="table-logo">
 		    			<span style='float:left; font-weight: bold'>{{score.home_team}}</span>
 		    		</ng-template>
 		    		<ng-template #homeLoserName>
+		    			<img src="assets/logos/nba-logos/{{score.home_team | lowercase }}.png" class="table-logo">
 		    			<span style='float:left;'>{{score.home_team}}</span>
 		    		</ng-template>
 		    	</p>
@@ -25,9 +27,11 @@
 		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; then awayWinnerName else awayLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #awayWinnerName>
 		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<img src="assets/logos/nba-logos/{{score.away_team | lowercase }}.png" class="table-logo">
 		    			<span style='float:left; font-weight: bold'>{{score.away_team}}</span>
 		    		</ng-template>
 		    		<ng-template #awayLoserName>
+		    			<img src="assets/logos/nba-logos/{{score.away_team | lowercase }}.png" class="table-logo">
 		    			<span style='float:left;'>{{score.away_team}}</span>
 		    		</ng-template>
 		    	</p>

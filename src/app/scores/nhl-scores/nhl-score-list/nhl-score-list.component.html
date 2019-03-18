@@ -16,9 +16,11 @@
 		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #homeWinnerName>
 		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<img src="assets/logos/nhl-logos/{{score.home_team_id}}.svg" class="table-logo">
 		    			<span style='float:left; font-weight: bold'>{{score.home_team}}</span>
 		    		</ng-template>
 		    		<ng-template #homeLoserName>
+		    			<img src="assets/logos/nhl-logos/{{score.home_team_id}}.svg" class="table-logo">
 		    			<span style='float:left;'>{{score.home_team}}</span>
 		    		</ng-template>
 		    	</p>
@@ -26,9 +28,11 @@
 		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; then awayWinnerName else awayLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
 		    		<ng-template #awayWinnerName>
 		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    				<img src="assets/logos/nhl-logos/{{score.away_team_id}}.svg" class="table-logo">
 		    			<span style='float:left; font-weight: bold'>{{score.away_team}}</span>
 		    		</ng-template>
 		    		<ng-template #awayLoserName>
+		    			<img src="assets/logos/nhl-logos/{{score.away_team_id}}.svg" class="table-logo">
 		    			<span style='float:left;'>{{score.away_team}}</span>
 		    		</ng-template>
 		    	</p>
@@ -81,9 +85,22 @@
 <ngx-smart-modal #myModal identifier="myModal" class='nhl-modal'>
 <div *ngIf="myModal.hasData()">
   <div class="col-md-12 modal-row1">
-    <img src="assets/logos/nhl-logos/{{myModal.getData().home_team_id}}.svg" width="47%" style="display:inline;">
-	<div style="display:inline;width:1%;">vs</div>
-	<img src="assets/logos/nhl-logos/{{myModal.getData().away_team_id}}.svg" width="47%" style="display:inline;">
+    <div class='inline'>
+    	<img src="assets/logos/nhl-logos/{{myModal.getData().home_team_id}}.svg" width="47%" style="">
+    </div>
+	<div class='inline' style="width:1%;">vs</div>
+	<div class='inline' >
+		<img src="assets/logos/nhl-logos/{{myModal.getData().away_team_id}}.svg" width="47%" style="">
+	</div>
+  </div>
+  <div class="col-sm-12 modal-row2" style="padding-bottom: 10px">
+    <div class='col-sm-5 center-text' width="49%">
+    	<!--<span class="center-text"> ({{myModal.getData().home_num_wins}}-{{myModal.getData().home_num_losses}}-{{myModal.getData().home_num_otl}}) </span>
+    </div>
+    <div class='inline col-sm-1'></div>
+	<div class='col-sm-5 center-text' width="49%">
+		<span class="center-text"> ({{myModal.getData().away_num_wins}}-{{myModal.getData().away_num_losses}}-{{myModal.getData().away_num_otl}}) </span>-->
+	</div>
   </div>
   <div class="col-md-12 center-text full-width">
     	<table class='full-width box-score-small table table-bordered type-list2'>

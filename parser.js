@@ -55,9 +55,9 @@ function parseNHL(data){
   			// Fields for game details
   			gameJSON.home_team_id = gameJSON.away_num_wins = gameObject["teams"]["home"]["team"]["id"];
 
-				gameJSON.home_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
-				gameJSON.home_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
-				gameJSON.home_num_otl = gameObject["teams"]["away"]["leagueRecord"]["ot"];
+				gameJSON.home_num_wins = gameObject["teams"]["home"]["leagueRecord"]["wins"];
+				gameJSON.home_num_losses = gameObject["teams"]["home"]["leagueRecord"]["losses"];
+				gameJSON.home_num_otl = gameObject["teams"]["home"]["leagueRecord"]["ot"];
 
 				gameJSON.home_period1_goals = 0;
 				gameJSON.home_period2_goals = 0;
