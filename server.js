@@ -96,6 +96,8 @@ app.get("/api/scores/:id", function(req, res) {
   });
 });
 
+// date methods
+
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1;
   var dd = this.getDate();
@@ -104,6 +106,17 @@ Date.prototype.yyyymmdd = function() {
           (mm>9 ? '' : '0') + mm,
           (dd>9 ? '' : '0') + dd
          ].join('');
+};
+
+Date.prototype.yyyymmddSlashed = function() {
+  var mm = this.getMonth() + 1;
+  var dd = this.getDate();
+
+  return [
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd,
+          this.getFullYear()
+         ].join('/');
 };
 
 var date = new Date();
@@ -132,6 +145,19 @@ app.get("/api/getNBAScores", function(req, res) {
     .then(response => response.json())
     .then(data => {
       var parsedJSON = parser.parseJSON(data, "nba", currDate);
+      res.status(200).json(parsedJSON);
+    })
+    .catch(error => console.error(error))
+});
+
+// MLB SCORES
+
+app.get("/api/getMLBScores", function(req, res) {
+    var jsonData;
+    fetch('http://statsapi.mlb.com/api/v1/schedule?sportId=1&date='+ date.yyyymmddSlashed())
+    .then(response => response.json())
+    .then(data => {
+      var parsedJSON = parser.parseJSON(data, "mlb", currDate);
       res.status(200).json(parsedJSON);
     })
     .catch(error => console.error(error))

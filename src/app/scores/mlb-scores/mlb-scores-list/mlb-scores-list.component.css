@@ -1,3 +1,122 @@
 .header-center {
 	text-align: center;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 35%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  border-collapse:separate; 
+  border-spacing:0 15px; 
+}
+
+tr:hover:not(.active) td {
+	background: #f0f0f0;
+	transition: 0.3s;
+	cursor: pointer;
+	
+}
+
+.center-text{
+	text-align: center;
+}
+
+.center-button {
+	text-align: center;
+}
+
+.bold-text {
+	font-weight: bold;
+}
+
+
+tr:hover td {
+	cursor: pointer;
+}
+
+
+.box-score-small {
+	white-space: nowrap;
+	margin-left: auto;
+    margin-right: auto;
+	font-size: 12px;
+}
+
+.box-score-row {
+	height: 12px;
+}
+
+.nhl-detail-logo {
+	display:inline;
+	width: 40%;
+}
+
+#text {
+	text-align: justify;
+}
+
+.shootout-float-right {
+	float: right;
+}
+
+.table-logo {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
+.inline {
+	display: inline;
+}
+
+tr.active {
+	background-color: #DCDCDC;
+	padding-bottom: 1em;
+	transition: 0.3s;
+}
+
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+    border-collapse:separate; 
+	border-spacing:1px 10px;
+}
+
+.modal-row1 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 100%;
+	height: auto;
+}
+
+.versus {
+	padding-top: 50px;
+}	
+
+@media (max-width: 850px) {
+    table {
+		  border-collapse: separate;
+		  border-spacing: 0;
+		  width: 90%;
+	}
+
+	.versus {
+		display: none;
+	}
+
+	.box-score-small {
+		white-space: nowrap;
+		margin-left: auto;
+	    margin-right: auto;
+		font-size: 8px;
+	}
+
+}

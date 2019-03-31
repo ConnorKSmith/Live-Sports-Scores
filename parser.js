@@ -12,12 +12,67 @@ parseJSON: function (data, league, date) {
   		case "nba":
   			return parseNBA(data, date);
   			break;
+  		case "mlb":
+  			return parseMLB(data);
+  			break;
   		default: 
   			return parseNHL(data);
   	}	
   }
 
 };
+
+function parseMLB(data){
+  	var datesArray = data["dates"];
+  	var returnJSON = new Object;
+  	for (var i = 0; i<datesArray.length; i++){
+  		var dateObject = datesArray[i];
+  		var stringDate = dateObject["date"];
+  		var gamesArray = dateObject["games"];
+  		var gamesJSONArray = [];
+  		for (var j = 0; j<gamesArray.length; j++){
+  			var gameObject = gamesArray[j];
+  			var gameJSON = new Object;
+  			gameJSON.home_team = gameObject["teams"]["home"]["team"][
+  			"name"];
+  			gameJSON.home_team_logo_name = gameJSON.home_team.replace(/\s/g, '-').toLowerCase();
+  			gameJSON.home_score = gameObject["teams"]["home"]["score"];
+  			gameJSON.away_team = gameObject["teams"]["away"]["team"][
+  			"name"];
+  			gameJSON.away_team_logo_name = gameJSON.away_team.replace(/\s/g, '-').toLowerCase();
+  			gameJSON.away_score = gameObject["teams"]["away"]["score"];
+  			gameJSON.time_remaining = gameObject["status"]["abstractGameState"];
+  			var codedGameState = gameObject["status"]["codedGameState"];
+  			if ( codedGameState == 1){
+  				var gameDateObject = new Date(gameObject["gameDate"]);
+  				var utcDate = new Date(gameDateObject.toUTCString());
+				utcDate.setHours(utcDate.getHours()-4);
+				var usDate = new Date(utcDate);
+				var mins = (usDate.getMinutes()>9 ? '' : '0') + usDate.getMinutes()
+				gameJSON.time_remaining = (usDate.getHours()%12) + ":" + mins + " ET";
+  				gameJSON.started = false;
+  			}
+  			else {
+  				gameJSON.started = true;
+  			}
+
+  			// Fields for game details
+  			gameJSON.home_team_id = gameJSON.away_num_wins = gameObject["teams"]["home"]["team"]["id"];
+
+			gameJSON.home_num_wins = gameObject["teams"]["home"]["leagueRecord"]["wins"];
+			gameJSON.home_num_losses = gameObject["teams"]["home"]["leagueRecord"]["losses"];
+
+			gameJSON.away_num_wins = gameObject["teams"]["away"]["leagueRecord"]["wins"];
+			gameJSON.away_num_losses = gameObject["teams"]["away"]["leagueRecord"]["losses"];
+
+
+  			gameJSON.date = stringDate;
+  			gamesJSONArray.push(gameJSON);
+  		}
+  		returnJSON.games = gamesJSONArray.reverse();;
+  	}
+  	return returnJSON;
+}
 
 // Build NHL JSON Object to send to front end
 function parseNHL(data){
@@ -42,10 +97,10 @@ function parseNHL(data){
   			if ( codedGameState == 1){
   				var gameDateObject = new Date(gameObject["gameDate"]);
   				var utcDate = new Date(gameDateObject.toUTCString());
-					utcDate.setHours(utcDate.getHours()-4);
-					var usDate = new Date(utcDate);
-					var mins = (usDate.getMinutes()>9 ? '' : '0') + usDate.getMinutes()
-					gameJSON.time_remaining = (usDate.getHours()%12) + ":" + mins + " ET";
+				utcDate.setHours(utcDate.getHours()-4);
+				var usDate = new Date(utcDate);
+				var mins = (usDate.getMinutes()>9 ? '' : '0') + usDate.getMinutes()
+				gameJSON.time_remaining = (usDate.getHours()%12) + ":" + mins + " ET";
   				gameJSON.started = false;
   			}
   			else {
@@ -153,6 +208,6 @@ function parseNBA(data, date){
 
 			gamesJSONArray.push(gameJSON);
 		}
-		returnJSON.games = gamesJSONArray;
+		returnJSON.games = gamesJSONArray.reverse();;
 		return returnJSON;
 }

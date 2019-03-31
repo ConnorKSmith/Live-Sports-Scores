@@ -1,7 +1,90 @@
-<div class="page-header header-center">
 
-  	<h1>	
-		<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Major_League_Baseball_logo.svg/1920px-Major_League_Baseball_logo.svg.png" style="width:64px;height:36px; margin-right: 5px;">
-  		No MLB games today.
-  	</h1>
+<div style="">
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header header-center">
+
+	  	<h1>	
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Major_League_Baseball_logo.svg/1920px-Major_League_Baseball_logo.svg.png" style="width:64px;height:36px; margin-right: 5px;">
+	  		MLB Scores
+	  	</h1>
+	</div>
+    <div style="overflow-x:hidden;">
+		<table class="center" style="">
+		  <tr *ngFor="let score of scores"
+	        (click)="
+	        	selectScore(score);
+	        	ngxSmartModalService.getModal('myModal').open()">
+		    <td class="teams" style="width: 70%;" title="">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; then homeWinnerName else homeLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #homeWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    			<img src="assets/logos/mlb-logos/{{score.home_team_logo_name}}.svg" class="table-logo">
+		    			<span style='float:left; font-weight: bold'>{{score.home_team}}</span>
+		    		</ng-template>
+		    		<ng-template #homeLoserName>
+		    			<img src="assets/logos/mlb-logos/{{score.home_team_logo_name}}.svg" class="table-logo">
+		    			<span style='float:left;'>{{score.home_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; then awayWinnerName else awayLoserName" class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    		<ng-template #awayWinnerName>
+		    			<span class="glyphicon glyphicon-triangle-right" style='float:left; font-size:70%;padding-top: 3px;'></span>
+		    				<img src="assets/logos/mlb-logos/{{score.away_team_logo_name}}.svg" class="table-logo">
+		    			<span style='float:left; font-weight: bold'>{{score.away_team}}</span>
+		    		</ng-template>
+		    		<ng-template #awayLoserName>
+		    			<img src="assets/logos/mlb-logos/{{score.away_team_logo_name}}.svg" class="table-logo">
+		    			<span style='float:left;'>{{score.away_team}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <td style="width: 15px;" *ngIf="score.started; else notStarted">
+		    	<p>
+		    		<span *ngIf="score.home_score>score.away_score && score.time_remaining!='Live'; else homeLoser" style='float:right; font-weight: bold'>	
+		    			{{score.home_score}}
+		    		</span>
+		    		<ng-template #homeLoser> 
+		    			<span style='float:right;'>{{score.home_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    	<p style='padding-top: 10px;'>
+		    		<span *ngIf="score.away_score>score.home_score && score.time_remaining!='Live'; else awayLoser" style='float:right; font-weight: bold'>	
+		    			{{score.away_score}}
+		    		</span>
+		    		<ng-template #awayLoser> 
+		    			<span style='float:right;'>{{score.away_score}}</span>
+		    		</ng-template>
+		    	</p>
+		    </td>
+		    <ng-template #notStarted>
+		    	<td></td>
+		    </ng-template>
+		    <td style="width: 23%; text-align: center;">
+		    	<span *ngIf="score.time_remaining=='Live'; else notLive" style="color: red; font-style: italic;">
+	        		Live
+	        	</span>
+	        	<ng-template #notLive> 
+		    		<span *ngIf="score.time_remaining=='Final'; else notStarted" style="">
+
+	        			<span class="bold-text" style="">Final</span>
+	        			<span class="bold-text" *ngIf="score.shootout; else notShootout">/SO</span>
+	        			<ng-template #notShootout>
+	        				<span class="bold-text" *ngIf="score.overtime;">/OT</span>
+	        			</ng-template>
+		        	</span>
+		        	<ng-template #notStarted> 
+		        		<span class="preview-text" style="">
+		        		{{score.time_remaining}}
+		        		</span>
+		        	</ng-template>
+		    	</ng-template>
+		    </td>
+		  </tr>
+		</table>
+	</div>
+  </div>
+</div>
 </div>

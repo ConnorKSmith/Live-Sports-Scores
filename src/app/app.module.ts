@@ -27,12 +27,15 @@ import { NhlScoreService } from './scores/nhl-scores/nhl-score.service';
 import { NhlScoreListComponent } from './scores/nhl-scores/nhl-score-list/nhl-score-list.component';
 import { NhlScoreDetailsComponent } from './scores/nhl-scores/nhl-score-details/nhl-score-details.component';
 
+// MLB
+import { MlbScoreService } from './scores/mlb-scores/mlb-score.service';
+import { MlbScoresListComponent } from './scores/mlb-scores/mlb-scores-list/mlb-scores-list.component';
+
 // Static
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { NflScoresListComponent } from './scores/nfl-scores/nfl-scores-list/nfl-scores-list.component';
-import { MlbScoresListComponent } from './scores/mlb-scores/mlb-scores-list/mlb-scores-list.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { MlbScoresListComponent } from './scores/mlb-scores/mlb-scores-list/mlb-
     ContactService,
     ScoreService,
     NhlScoreService,
-    NbaScoreService
+    NbaScoreService,
+    MlbScoreService
   ],
   bootstrap: [AppComponent]
 })
