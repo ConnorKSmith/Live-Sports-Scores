@@ -4,6 +4,14 @@ table {
   width: 35%;
 }
 
+.vertical-line {
+  border-left: 1px solid black;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+}
+
 td, th {
   border: 1px solid #dddddd;
   text-align: left;

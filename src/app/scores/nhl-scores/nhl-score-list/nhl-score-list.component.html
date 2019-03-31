@@ -86,11 +86,11 @@
 <div *ngIf="myModal.hasData()">
   <div class="col-md-12 modal-row1">
     <div class='inline'>
-    	<img src="assets/logos/nhl-logos/{{myModal.getData().home_team_id}}.svg" width="47%" style="">
+    	<img src="assets/logos/nhl-logos/{{myModal.getData().home_team_id}}.svg" width="40%" style="">
     </div>
-	<div class='inline' style="width:1%;">vs</div>
-	<div class='inline' >
-		<img src="assets/logos/nhl-logos/{{myModal.getData().away_team_id}}.svg" width="47%" style="">
+    <div class="vertical-line"></div>
+	<div style='padding-left: 18%;' class='inline' >
+		<img src="assets/logos/nhl-logos/{{myModal.getData().away_team_id}}.svg" width="40%" style="">
 	</div>
   </div>
   <div class="col-sm-12 modal-row2" style="padding-bottom: 10px">
