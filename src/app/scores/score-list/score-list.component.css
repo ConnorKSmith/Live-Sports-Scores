@@ -105,4 +105,8 @@ header .overlay {
   .text-white {
     font-size: 13px;
   }
+
+  .header-title {
+    font-size: 24px;
+  }
 }
