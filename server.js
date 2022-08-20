@@ -16,27 +16,11 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-/*var db;
 
-const { Client } = require('pg');
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-});
-
-db = client.db();*/
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // CONTACTS API ROUTES BELOW
 
@@ -53,14 +37,14 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new score
  */
 
-/*app.get("/api/scores", function(req, res) {
-  db.collection(SCORES_COLLECTION).find({}).toArray(function(err, docs) {
+app.get("/api/scores", function(req, res) {
+/*  db.collection(SCORES_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get scores.");
     } else {
       res.status(200).json(docs);
     }
-  });
+  });*/
 });
 
 app.post("/api/scores", function(req, res) {
@@ -70,13 +54,13 @@ app.post("/api/scores", function(req, res) {
   if (!req.body.name) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   } else {
-    db.collection(SCORES_COLLECTION).insertOne(newScore, function(err, doc) {
+/*    db.collection(SCORES_COLLECTION).insertOne(newScore, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to create new score.");
       } else {
         res.status(201).json(doc.ops[0]);
       }
-    });
+    });*/
   }
 });
 
@@ -86,15 +70,15 @@ app.post("/api/scores", function(req, res) {
  *    DELETE: deletes score by id
  */
 
-/*app.get("/api/scores/:id", function(req, res) {
-  db.collection(SCORES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+app.get("/api/scores/:id", function(req, res) {
+/*  db.collection(SCORES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
     } else {
       res.status(200).json(doc);
     }
-  });
-});*/
+  });*/
+});
 
 // date methods
 
@@ -164,7 +148,7 @@ app.get("/api/getMLBScores", function(req, res) {
 });
 
 
-//  heroky routing
+//  heroku routing
 
 app.get('*', function (req, res) {
   res.sendfile('./dist/index.html'); // load our index.html file
