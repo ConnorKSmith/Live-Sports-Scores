@@ -16,7 +16,7 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
+/*var db;
 
 const { Client } = require('pg');
 
@@ -36,7 +36,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   }
 });
 
-db = client.db();
+db = client.db();*/
 
 // CONTACTS API ROUTES BELOW
 
@@ -53,7 +53,7 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new score
  */
 
-app.get("/api/scores", function(req, res) {
+/*app.get("/api/scores", function(req, res) {
   db.collection(SCORES_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get scores.");
@@ -86,7 +86,7 @@ app.post("/api/scores", function(req, res) {
  *    DELETE: deletes score by id
  */
 
-app.get("/api/scores/:id", function(req, res) {
+/*app.get("/api/scores/:id", function(req, res) {
   db.collection(SCORES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
@@ -94,7 +94,7 @@ app.get("/api/scores/:id", function(req, res) {
       res.status(200).json(doc);
     }
   });
-});
+});*/
 
 // date methods
 
